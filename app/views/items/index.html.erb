@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Item selection</title>
+  <script>
+    function calculateTotal() {
+      var total = 0;
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+      
+      checkboxes.forEach(function(checkbox) {
+        var price = parseFloat(checkbox.getAttribute('data-price'));
+        total += price;
+      });
+      
+      document.getElementById('total-price').textContent = total.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+  <h1>Select your items</h1>
+  
+<ul>
+
+    <% @items.each do |item| %>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"> <%= item.name%> </h5>
+          <input type="checkbox" data-price=<%= item.price%> onchange="calculateTotal()"> <%= item.price%>
+        </div>
+      </div>
+    <% end %>
+
+</ul> 
+  
+  <h2>Total Price: $<span id="total-price">0.00</span></h2>
+</body>
+</html>
+
