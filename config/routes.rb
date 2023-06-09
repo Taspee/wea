@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :models
+  devise_for :users
   resources :searches
   get 'home_pages/home'
   get 'static_pages/home'
